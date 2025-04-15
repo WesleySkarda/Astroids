@@ -8,7 +8,7 @@ def main():
     while game_loop_bool:
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
-                return
+                break
         pygame.Surface.fill(screen,"black")
         pygame.display.flip()
     print("Starting Asteroids!")
