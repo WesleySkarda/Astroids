@@ -4,6 +4,7 @@ from constants import *
 from Shot import Shot
 
 class Player(CircleShape):
+    Score:int = 0
     def __init__(self, x, y):
         super().__init__(x, y, PLAYER_RADIUS)
 
@@ -52,4 +53,10 @@ class Player(CircleShape):
             if self.timer <= 0:
                 self.shoot()
                 self.timer = PLAYER_SHOOT_COOLDOWN
+
+    def is_colliding(self, CircleShape):
+        for point in self.triangle():
+            if CircleShape.radius >= point.distance_to(CircleShape.position):
+                return True
+        return False
     

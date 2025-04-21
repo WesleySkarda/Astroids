@@ -9,6 +9,11 @@ ASTEROID_SPAWN_RATE = 0.8  # seconds
 ASTEROID_MAX_RADIUS = ASTEROID_MIN_RADIUS * ASTEROID_KINDS
 ASTEROID_COLOR = "white"
 
+#menu variables
+GAME_FONT = "HyperspaceBold-GM0g.ttf"
+NOT_HOVERING = 'white'
+HOVERING = 'red'
+
 #player variables
 PLAYER_RADIUS = 20
 PLAYER_COLOR = "white"
