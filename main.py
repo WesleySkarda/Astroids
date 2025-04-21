@@ -55,16 +55,21 @@ def main_menu(screen):
     start_button = menu("Start", screen)
     settings = menu("Settings", screen)
     quit = menu('quit', screen)
+    high_score = menu("High Score", screen)
+    drawables = [title, start_button, settings, quit, high_score]
     title.set_position((SCREEN_HEIGHT/2-title.render().get_height()*2))
     start_button.set_position((title.position[1]+ title.render().get_height()))
     settings.set_position(start_button.position[1])
-    quit.set_position(settings.position[1])
-    hovering_list = [start_button, settings, quit]
+    high_score.set_position(settings.position[1])
+    quit.set_position(high_score.position[1])
+    hovering_list = [start_button, settings, high_score, quit]
     start_button.hover()
-
+    for item in drawables:
+        item.draw()
+        
     while True:
         keys = pygame.key.get_pressed()
-        dt = pygame_clock.tick(10)/ 1000
+        dt = pygame_clock.tick(5)/ 1000
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 return 'quit'
@@ -87,15 +92,19 @@ def main_menu(screen):
                         button.hover()
                         hovering_list[hovering_list.index(button)+1].hover()
                         break
-        title.draw()
-        start_button.draw()
-        settings.draw()
-        quit.draw()
-        pygame.display.update()
-
-
+        
         if keys[pygame.K_SPACE]:
-            pass
+            for button in hovering_list:
+                if button.hovering:
+                    if button.text == "Start":
+                        return "game"
+                    elif button.text == "Settings":
+                        return "settings"
+                    elif button.text == "High Score":
+                        return "high score"
+                    elif button.text == "quit":
+                        return "quit"
+        pygame.display.update()
             
 
 if __name__ == "__main__":
@@ -110,6 +119,9 @@ if __name__ == "__main__":
         if game_state == "game":
             main(screen)
             break
-
+        if game_state == "settings":
+            break
+        if game_state == "high score":
+            break
         if game_state == "quit":
             break

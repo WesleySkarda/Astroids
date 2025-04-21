@@ -26,4 +26,5 @@ class menu():
         else:
             self.hovering = True
             self.State = HOVERING
+        self.draw()
 
