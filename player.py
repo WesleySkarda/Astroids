@@ -1,12 +1,12 @@
 from circleshape import CircleShape
 import pygame
-from constants import *
+import constants
 from Shot import Shot
 
 class Player(CircleShape):
     Score:int = 0
     def __init__(self, x, y):
-        super().__init__(x, y, PLAYER_RADIUS)
+        super().__init__(x, y, constants.player_variables.PLAYER_RADIUS)
 
         self.rotation = 0
         self.timer = 0
@@ -20,18 +20,18 @@ class Player(CircleShape):
         return [a, b, c]
     
     def draw(self, screen):
-        pygame.draw.polygon(screen, PLAYER_COLOR, self.triangle(), LINE_WIDTH)
+        pygame.draw.polygon(screen, constants.player_variables.PLAYER_COLOR, self.triangle(), constants.player_variables.LINE_WIDTH)
 
     def rotate(self, dt):
-        self.rotation += PLAYER_TURN_SPEED * dt
+        self.rotation += constants.player_variables.PLAYER_TURN_SPEED * dt
 
     def move(self,dt):
         forward = pygame.Vector2(0, 1).rotate(self.rotation)
-        self.position += forward * PLAYER_SPEED * dt
+        self.position += forward * constants.player_variables.PLAYER_SPEED * dt
 
     def shoot(self):
         bullet = Shot(self.position.x, self.position.y)
-        bullet.velocity = pygame.Vector2(0, 1).rotate(self.rotation) * PLAYER_SHOOT_SPEED
+        bullet.velocity = pygame.Vector2(0, 1).rotate(self.rotation) * constants.player_variables.PLAYER_SHOOT_SPEED
 
     def update(self, dt):
         keys = pygame.key.get_pressed()
@@ -52,7 +52,7 @@ class Player(CircleShape):
         if keys[pygame.K_SPACE]:
             if self.timer <= 0:
                 self.shoot()
-                self.timer = PLAYER_SHOOT_COOLDOWN
+                self.timer = constants.player_variables.PLAYER_SHOOT_COOLDOWN
 
     def is_colliding(self, CircleShape):
         for point in self.triangle():
