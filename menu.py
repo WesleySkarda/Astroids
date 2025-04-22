@@ -5,7 +5,7 @@ from file_updater import update_file
 
 class menu():
 
-    def __init__(self, text:str, surface, size = 40):
+    def __init__(self, text:str, surface, size = constants.menu_variables.small_text):
         self.text = text
         self.size = size
         self.State = constants.menu_variables.NOT_HOVERING
@@ -33,7 +33,7 @@ class menu():
 
 class settings_resolution(menu):
 
-    def __init__(self, text, surface, size=40):
+    def __init__(self, text, surface, size=constants.menu_variables.small_text):
         super().__init__(text, surface, size)
         self.resolutions = [(1920, 1080),
                             (1366, 768),
@@ -102,3 +102,18 @@ class Text_color(settings_color_parent):
 class Text_highlight_color(settings_color_parent):
     update_variable_name:str = 'HOVERING'
     color = constants.menu_variables.HOVERING
+
+class High_score_in_game(menu):
+    def render(self, score = 0):
+        return pygame.font.Font(constants.menu_variables.GAME_FONT, self.size).render(f"{self.text}: {score}", True, self.State)
+    
+    def draw(self, score):
+        self.surface.blit(self.render(score), self.position)
+
+class Name_input(menu):
+    def __init__(self, text, surface, size=constants.menu_variables.small_text):
+        super().__init__(text, surface, size)
+        self.name = ''
+
+    def render(self):
+        return pygame.font.Font(constants.menu_variables.GAME_FONT, self.size).render(f"{self.text}: {self.name}", True, self.State)

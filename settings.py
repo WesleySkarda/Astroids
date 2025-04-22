@@ -4,7 +4,7 @@ import constants
 
 def settings(screen):
     screen.fill(constants.screen_varables.BACKGROUND)
-    title = menu("Settings", screen, 100)
+    title = menu("Settings", screen, constants.menu_variables.large_text)
     resolution = settings_resolution("resolution", screen)
     Background_color = background_color("backgound color", screen)
     player_color = Player_color('player color', screen)
@@ -44,7 +44,7 @@ def settings(screen):
                 return 'quit'
 
         if cool_down <= 0:    
-            if keys[pygame.K_w]:
+            if keys[pygame.K_w] or keys[pygame.K_UP]:
                 for button in hovering_list:
                     if button.hovering:
                         hovering_list[hovering_list.index(button)-1].hover()
@@ -52,7 +52,7 @@ def settings(screen):
                         cool_down = cool_down_timer
                         break
             
-            elif keys[pygame.K_s]:
+            elif keys[pygame.K_s] or keys[pygame.K_DOWN]:
                 for button in hovering_list:
                     if button.hovering:
                         if hovering_list.index(button) == len(hovering_list) - 1:
@@ -66,20 +66,20 @@ def settings(screen):
                             cool_down = cool_down_timer
                             break
             
-            elif keys[pygame.K_a]:
+            elif keys[pygame.K_a] or keys[pygame.K_LEFT]:
                 for button in switching_list:
                     if button.hovering:
                         button.back()
                         cool_down = cool_down_timer
                         break
             
-            elif keys[pygame.K_d]:
+            elif keys[pygame.K_d] or keys[pygame.K_RIGHT]:
                 for button in switching_list:
                     if button.hovering:
                         button.next()
                         cool_down = cool_down_timer
                         break
-            if keys[pygame.K_SPACE]:
+            if keys[pygame.K_RETURN]:
                 for button in hovering_list:
                     if button.hovering and button.text == "back":
                         for item in switching_list:

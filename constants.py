@@ -1,6 +1,6 @@
 class screen_varables:
-    SCREEN_WIDTH = 1600
-    SCREEN_HEIGHT = 900
+    SCREEN_WIDTH = 1280
+    SCREEN_HEIGHT = 720
     BACKGROUND = 'black'
 
 class astroid_variables:
@@ -14,6 +14,9 @@ class menu_variables:
     GAME_FONT = "HyperspaceBold-GM0g.ttf"
     NOT_HOVERING = 'white'
     HOVERING = 'red'
+    high_scores = [('', 940), ('', 900), ('', 760), ('wesley', 700), ('wesley skarda', 480), ('wesley', 380), ('wesley', 280), ('wesley', 260), ('wesley', 220), ('wesley', 160)]
+    large_text = int(screen_varables.SCREEN_HEIGHT/10)
+    small_text = int(screen_varables.SCREEN_HEIGHT/20)
 
 class player_variables:
     PLAYER_RADIUS = 20
@@ -27,3 +30,5 @@ class player_variables:
 class shooting_contsants:    
     SHOT_RADIUS = 5
     SHOT_COLOR = 'white'
+    
+

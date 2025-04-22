@@ -4,6 +4,7 @@ from player import Player
 from asteroid import Asteroid
 from asteroidfield import AsteroidField
 from Shot import Shot
+from menu import High_score_in_game
 
 def game_loop(screen):
     pygame_clock = pygame.time.Clock()
@@ -12,6 +13,8 @@ def game_loop(screen):
     asteroids = pygame.sprite.Group()
     drawable = pygame.sprite.Group()
     Shots = pygame.sprite.Group()
+    score_counter = High_score_in_game("Score", screen)
+    score_counter.set_position()
 
     Shot.containers = (updatable, drawable, Shots)
     Player.containers = (updatable, drawable)
@@ -28,18 +31,19 @@ def game_loop(screen):
     while game_loop_bool:
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
-                return
+                return player.Score
         pygame.Surface.fill(screen, constants.screen_varables.BACKGROUND)
         updatable.update(dt)
         for asteroid in asteroids:
             if player.is_colliding(asteroid):
-                return
+                return player.Score
             for bullet in Shots:
                 if bullet.is_colliding(asteroid):
                     bullet.kill()
-                    asteroid.split()
+                    player.Score += asteroid.split()
 
         for object in drawable:
             object.draw(screen)
+        score_counter.draw(player.Score)
         pygame.display.flip()
         dt = pygame_clock.tick(60)/ 1000

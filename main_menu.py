@@ -7,7 +7,7 @@ def main_menu(screen):
     importlib.reload(constants)
 
     screen.fill(constants.screen_varables.BACKGROUND)
-    title = menu("astroids", screen, 100)
+    title = menu("astroids", screen, constants.menu_variables.large_text)
     start_button = menu("Start", screen)
     settings = menu("Settings", screen)
     quit = menu('quit', screen)
@@ -37,7 +37,7 @@ def main_menu(screen):
                 return 'quit'
 
         if cool_down <= 0:    
-            if keys[pygame.K_w]:
+            if keys[pygame.K_w] or keys[pygame.K_UP]:
                 for button in hovering_list:
                     if button.hovering:
                         hovering_list[hovering_list.index(button)-1].hover()
@@ -45,7 +45,7 @@ def main_menu(screen):
                         cool_down = cool_down_timer
                         break
             
-            elif keys[pygame.K_s]:
+            elif keys[pygame.K_s] or keys[pygame.K_DOWN]:
                 for button in hovering_list:
                     if button.hovering:
                         if hovering_list.index(button) == len(hovering_list) - 1:
@@ -59,7 +59,7 @@ def main_menu(screen):
                             cool_down = cool_down_timer
                             break
             
-            if keys[pygame.K_SPACE]:
+            if keys[pygame.K_RETURN]:
                 for button in hovering_list:
                     if button.hovering:
                         if button.text == "Start":

@@ -5,6 +5,8 @@ from Game_loop import game_loop
 from settings import settings
 import os
 import sys
+from Game_over_screen import Game_over
+from High_scores_screen import high_scores
 
 def main():
     pygame.init()
@@ -16,8 +18,9 @@ def main():
             game_state = main_menu(screen)
 
         if game_state == "game":
-            game_loop(screen)
-            break
+            score = game_loop(screen)
+            game_state = Game_over(screen, score)
+            
 
         if game_state == "settings":
             game_state = settings(screen)
@@ -25,7 +28,9 @@ def main():
             os.execl(python, python, * sys.argv)
 
         if game_state == "high score":
-            break
+            game_state = high_scores(screen)
+            python = sys.executable
+            os.execl(python, python, * sys.argv)
 
         if game_state == "quit":
             break
