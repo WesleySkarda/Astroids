@@ -5,6 +5,7 @@ from Shot import Shot
 
 class Player(CircleShape):
     Score:int = 0
+    lives:int = 3
     def __init__(self, x, y):
         super().__init__(x, y, constants.player_variables.PLAYER_RADIUS)
 

@@ -4,7 +4,7 @@ from player import Player
 from asteroid import Asteroid
 from asteroidfield import AsteroidField
 from Shot import Shot
-from menu import High_score_in_game
+from menu import in_game_text
 
 def game_loop(screen):
     pygame_clock = pygame.time.Clock()
@@ -13,8 +13,10 @@ def game_loop(screen):
     asteroids = pygame.sprite.Group()
     drawable = pygame.sprite.Group()
     Shots = pygame.sprite.Group()
-    score_counter = High_score_in_game("Score", screen)
+    score_counter = in_game_text("Score", screen)
     score_counter.set_position()
+    player_lives = in_game_text("extra Lives", screen)
+    player_lives.set_position(constants.screen_varables.SCREEN_HEIGHT - player_lives.render().get_height()*3)
 
     Shot.containers = (updatable, drawable, Shots)
     Player.containers = (updatable, drawable)
@@ -36,7 +38,13 @@ def game_loop(screen):
         updatable.update(dt)
         for asteroid in asteroids:
             if player.is_colliding(asteroid):
-                return player.Score
+                if player.lives == 0:
+                    return player.Score
+                else:
+                    for asteroid in asteroids:
+                        asteroid.kill()
+                    player.position = pygame.Vector2((constants.screen_varables.SCREEN_WIDTH/2), (constants.screen_varables.SCREEN_HEIGHT/2))
+                    player.lives -= 1
             for bullet in Shots:
                 if bullet.is_colliding(asteroid):
                     bullet.kill()
@@ -45,5 +53,6 @@ def game_loop(screen):
         for object in drawable:
             object.draw(screen)
         score_counter.draw(player.Score)
+        player_lives.draw(player.lives)
         pygame.display.flip()
         dt = pygame_clock.tick(60)/ 1000

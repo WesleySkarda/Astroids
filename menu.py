@@ -103,7 +103,7 @@ class Text_highlight_color(settings_color_parent):
     update_variable_name:str = 'HOVERING'
     color = constants.menu_variables.HOVERING
 
-class High_score_in_game(menu):
+class in_game_text(menu):
     def render(self, score = 0):
         return pygame.font.Font(constants.menu_variables.GAME_FONT, self.size).render(f"{self.text}: {score}", True, self.State)
     

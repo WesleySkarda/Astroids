@@ -14,7 +14,7 @@ class menu_variables:
     GAME_FONT = "HyperspaceBold-GM0g.ttf"
     NOT_HOVERING = 'white'
     HOVERING = 'red'
-    high_scores = [('', 940), ('', 900), ('', 760), ('wesley', 700), ('wesley skarda', 480), ('wesley', 380), ('wesley', 280), ('wesley', 260), ('wesley', 220), ('wesley', 160)]
+    high_scores = [('wesley', 1180), ('', 1020), ('', 940), ('', 900), ('', 760), ('wesley', 700), ('wesley skarda', 480), ('wesley', 380), ('wesley', 280), ('wesley', 260)]
     large_text = int(screen_varables.SCREEN_HEIGHT/10)
     small_text = int(screen_varables.SCREEN_HEIGHT/20)
 
