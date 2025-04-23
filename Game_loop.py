@@ -51,6 +51,8 @@ def game_loop(screen):
                         player.position = pygame.Vector2((constants.screen_varables.SCREEN_WIDTH/2), (constants.screen_varables.SCREEN_HEIGHT/2))
                         player.lives -= 1
                         countdown = 3 * constants.screen_varables.FPS
+                        for shot in Shots:
+                            shot.kill()
                 for bullet in Shots:
                     if bullet.is_colliding(asteroid):
                         bullet.kill()
