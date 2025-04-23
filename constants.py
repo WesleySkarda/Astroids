@@ -1,6 +1,6 @@
 class screen_varables:
-    SCREEN_WIDTH = 1280
-    SCREEN_HEIGHT = 720
+    SCREEN_WIDTH = 1920
+    SCREEN_HEIGHT = 1080
     BACKGROUND = 'black'
     FPS = 60
 
@@ -15,7 +15,7 @@ class menu_variables:
     GAME_FONT = "HyperspaceBold-GM0g.ttf"
     NOT_HOVERING = 'white'
     HOVERING = 'red'
-    high_scores = [('wes', 3420), ('wesley', 3140), ('wesley', 1180), ('wesley', 1120), ('', 1020), ('', 940), ('', 900), ('', 760), ('wesley', 700), ('wesley skarda', 480)]
+    high_scores = [('', 7120), ('wesley', 6440), ('wes', 3420), ('wesley', 3140), ('wesley', 1180), ('wesley', 1120), ('', 1020), ('', 940), ('', 900), ('', 760)]
     large_text = int(screen_varables.SCREEN_HEIGHT/10)
     small_text = int(screen_varables.SCREEN_HEIGHT/20)
 

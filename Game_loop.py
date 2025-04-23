@@ -58,6 +58,7 @@ def game_loop(screen):
 
             for object in drawable:
                 object.draw(screen)
+                object.bounderies()
         else:
             countdown -= 1
             countdown_text.draw(int(countdown/constants.screen_varables.FPS) + 1)
